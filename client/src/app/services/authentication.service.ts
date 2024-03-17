@@ -17,4 +17,22 @@ export class AuthenticationService {
   usersUrl = `AuthManagement/GetUsers`;
 
   constructor(private http: HttpClient) {}
+
+  public register(user: Register): Observable<JwtAuth> {
+    return this.http.post<JwtAuth>(
+      `${environment.apiUrl}/${this.registerUrl}`,
+      user
+    );
+  }
+
+  public login(user: Login): Observable<JwtAuth> {
+    return this.http.post<JwtAuth>(
+      `${environment.apiUrl}/${this.loginUrl}`,
+      user
+    );
+  }
+
+  public getUsers(): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/${this.usersUrl}`);
+  }
 }
