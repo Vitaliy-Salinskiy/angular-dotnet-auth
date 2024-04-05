@@ -1,3 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.hero-bg{
+  background-image: url('/assets/bg-hotels.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@layer{
+    .app-container{
+        @apply w-full mx-auto px-4 md:px-2 2xl:px-1 container max-w-screen-xl
+    }
+
+    .title-primary{
+        @apply text-[45px] md:text-5xl font-bold text-gray-800
+    }
+}

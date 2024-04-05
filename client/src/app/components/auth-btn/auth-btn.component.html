@@ -1,18 +1,65 @@
 @if(auth.isLoading$ | async){
-  <p>loading...</p>
-}@else {
-  @if(auth.isAuthenticated$ | async){
-    @if(auth.user$ | async; as user){
-      <ul>
-        <li>{{user.name}}</li>
-        <li>{{user.email}}</li>
-        <img src={{user.picture}} [alt]="user.name! + user.email!">
-      </ul>
-    }
-    <button (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })">
-      Log out
-    </button>
+<p>loading...</p>
+}@else { @if(auth.isAuthenticated$ | async){ @if(auth.user$ | async; as user){
+<div class="relative text-blackish-green">
+  <div class="relative h-[45px] w-[45px]">
+    <img
+      ngSrc="https://i.pinimg.com/736x/de/4b/2b/de4b2b63e716ca9880975137388593fe.jpg"
+      class="bg-black rounded-full cursor-pointer object-cover"
+      (click)="handleOpenChange()"
+      alt="profile"
+      fill
+    />
+  </div>
+  <div
+    [ngClass]="{ 'top-[20px]': !isOpen, 'opacity-0': !isOpen }"
+    class="-z-20 transition-all absolute w-96 bg-white -right-4 top-[130%] shadow-2xl drop-shadow-xl shadow-black rounded-xl py-8 flex gap-6 flex-col px-8"
+  >
+    <div class="flex items-center gap-4">
+      <div class="w-[64px] h-[64px] bg-black rounded-full relative">
+        <img
+          ngSrc="https://i.pinimg.com/736x/de/4b/2b/de4b2b63e716ca9880975137388593fe.jpg"
+          class="bg-black rounded-full cursor-pointer object-cover"
+          alt="profile-pic"
+          fill
+        />
+      </div>
+      <div class="flex flex-col gap-px">
+        <p class="text-xl font-semibold">Jhon Doe</p>
+        <p class="text-base text-gray-600">Online</p>
+      </div>
+    </div>
+    <hr class="w-full h-px bg-slate-900" />
+    <div class="flex flex-col gap-4">
+      @for (link of accountLinks.slice(0, 3); track $index) {
+      <a class="flex justify-between items-center cursor-pointer">
+        <div class="flex gap-2">
+          <ng-icon [name]="link.iconName" class="text-2xl"></ng-icon>
+          <p class="text-lg font-semibold">{{ link.label }}</p>
+        </div>
+        <ng-icon name="ionArrowForwardSharp" class="text-xl"></ng-icon>
+      </a>
+      }
+    </div>
+    <hr class="w-full h-px bg-slate-900" />
+    <div class="flex flex-col gap-4">
+      @for (link of accountLinks.slice(3, 5); track $index) {
+      <a
+        class="flex justify-between items-center cursor-pointer"
+        (click)="onLinkClick(link.isLogout)"
+      >
+        <div class="flex gap-2">
+          <ng-icon [name]="link.iconName" class="text-2xl"></ng-icon>
+          <p class="text-lg font-semibold">{{ link.label }}</p>
+        </div>
+        <ng-icon name="ionArrowForwardSharp" class="text-xl"></ng-icon>
+      </a>
+      }
+    </div>
+  </div>
+</div>
+}
+<button>Log out</button>
 } @else {
-  <button (click)="auth.loginWithRedirect()">Log in</button>
-}
-}
+<button (click)="auth.loginWithRedirect()">Log in</button>
+} }

@@ -1,1 +1,28 @@
-<p>header works!</p>
+<header class="text-blackish-green z-20">
+  <div class="app-container">
+    <div class="flex justify-between items-center py-[25px]">
+      <div class="flex gap-8">
+        @for(link of links; track link.path){
+        <a [href]="link.path" class="flex gap-1">
+          <ng-icon [name]="link.iconName" class="text-xl" />
+          <p class="text-sm font-semibold">{{ link.label }}</p>
+        </a>
+        }
+      </div>
+      <div>
+        <img src="/assets/logo.svg" alt="logo" />
+      </div>
+      <div class="flex items-center z-10">
+        <a href="" class="flex items-center gap-2">
+          <ng-icon name="ionHeart" class="text-xl" />
+          <p>Favourites</p>
+        </a>
+        <hr class="h-[17px] w-0.5 bg-blackish-green mx-5" />
+        @if(isBrowser){
+        <auth-btn></auth-btn>
+        }
+      </div>
+    </div>
+  </div>
+  <div></div>
+</header>
