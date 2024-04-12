@@ -1,0 +1,109 @@
+<div class="relative" (click)="$event.stopPropagation()">
+  <div class="relative border border-light-grey w-56 h-14 rounded-[4px] z-10">
+    <div
+      class="absolute left-3 -top-[7.5px] bg-white text-blackish-green px-1 text-base font-normal leading-[17px] z-10"
+    >
+      {{ label }}
+    </div>
+    <input
+      readonly
+      type="date"
+      [value]="selectedDate?.toISOString()?.slice(0, 10)"
+      class="absolute inset-0 pl-4 pr-10 rounded-[4px] outline-none font-normal"
+    />
+    <ng-icon
+      name="ionCalendar"
+      class="absolute right-3 text-2xl top-1/2 -translate-y-1/2 cursor-pointer"
+      (click)="handleCalendarOpen()"
+    ></ng-icon>
+  </div>
+
+  <div
+    class="absolute top-16 rounded-lg w-[280px] border bg-white border-black flex flex-col p-5 transition-[transform_0.3s,visibility_0.35s,opacity_0.3s] z-0"
+    [ngClass]="{
+      'scale-95 invisible opacity-0': !isOpen
+    }"
+    (click)="handleNestedCalendarOpen(null, false)"
+  >
+    <div class="flex justify-between items-center">
+      <div
+        (click)="handleMonthChange('prev')"
+        class="w-8 h-8 rounded-md grid place-content-center cursor-pointer border border-black"
+      >
+        <ng-icon name="ionArrowBack" class="text-lg cursor-pointer"></ng-icon>
+      </div>
+      <h3
+        class="text-lg select-none cursor-pointer"
+        (click)="handleNestedCalendarOpen($event)"
+      >
+        {{ getMonthName(currentMonth) }} {{ currentYear }}
+      </h3>
+      <div
+        (click)="handleMonthChange('next')"
+        class="w-8 h-8 rounded-md grid place-content-center cursor-pointer border border-black"
+      >
+        <ng-icon
+          name="ionArrowForward"
+          class="text-lg cursor-pointer"
+        ></ng-icon>
+      </div>
+    </div>
+    <div class="mt-3 select-none relative">
+      <div
+        class="absolute w-full bg-white z-10 rounded-lg border border-black transition-[transform_0.3s,visibility_0.35s,opacity_0.3s]"
+        [ngClass]="{ 'scale-95 invisible opacity-0': !isNestedOpen }"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="flex justify-between items-center py-2 px-3">
+          <ng-icon
+            name="ionArrowBack"
+            class="text-lg cursor-pointer"
+            (click)="handleYearChange('prev')"
+          ></ng-icon>
+          <p>
+            {{ nestedYear }}
+          </p>
+          <ng-icon
+            name="ionArrowForward"
+            class="text-lg cursor-pointer"
+            (click)="handleYearChange('next')"
+          ></ng-icon>
+        </div>
+        <div class="grid grid-cols-4 gap-2 p-2">
+          @for (month of monthNames; track $index) {
+          <div
+            [ngClass]="{
+              'bg-mint-green text-white hover:bg-mint-green/80 hover:text-slate-100':
+                $index === currentMonth && currentYear == nestedYear
+            }"
+            class="flex justify-center items-center py-1 px-4 rounded-md hover:bg-slate-200 hover:text-slate-600 transition-colors cursor-pointer"
+            (click)="setSelectedMonth($index)"
+          >
+            {{ month.slice(0, 3) }}
+          </div>
+          }
+        </div>
+      </div>
+      <ul class="grid grid-cols-7 select-none">
+        @for (day of daysOfWeek; track $index) {
+        <li class="grid place-content-center">{{ day.slice(0, 2) }}</li>
+        }
+      </ul>
+      <ul class="grid grid-cols-7 gap-y-2">
+        @for (day of daysOfMonth; track $index) {
+        <li
+          [ngClass]="{
+            'rounded-md h-8 w-8 text-black grid place-content-center transition-colors cursor-pointer hover:bg-slate-200': true,
+            'border border-mint-green text-mint-green': day.date.toISOString().slice(0, 10) === currentDate.toISOString().slice(0, 10),
+            'bg-mint-green !text-white hover:!bg-mint-green/70': day.date.toISOString().slice(0, 10) === selectedDate?.toISOString()?.slice(0, 10),
+            'opacity-[55%]': !day.isActive,
+          }"
+          (click)="setSelectedDate(day.date)"
+        >
+          {{ day.dateLabel }}
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

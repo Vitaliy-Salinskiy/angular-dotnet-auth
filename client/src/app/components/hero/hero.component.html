@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <div class="hero-bg">
       <div class="app-container h-[537px] pt-20">
-        <div class="max-w-[440px] text-white flex flex-col gap-2">
+        <div class="max-w-[420px] text-white flex flex-col gap-2">
           <h1 class="text-[45px] leading-[57px] font-bold">
             Make your travel whishlist, we’ll do the rest
           </h1>
@@ -11,9 +11,18 @@
       </div>
     </div>
     <div class="app-container">
-      <!-- <div
-        class="w-full shadow-xl drop-shadow-2xl h-64 -translate-y-1/2 z-10 bg-white ring-0 rounded-xl py-8 px-6"
-      ></div> -->
+      <div
+        class="w-full shadow-xl drop-shadow-2xl h-64 -translate-y-1/2 z-10 bg-white ring-0 rounded-xl py-8 px-6 flex justify-between"
+      >
+        <date-picker
+          label="Check in"
+          (selectedDateChange)="onSelectedDateChange($event, 'checkIn')"
+        ></date-picker>
+        <date-picker
+          label="Check out"
+          (selectedDateChange)="onSelectedDateChange($event, 'checkOut')"
+        ></date-picker>
+      </div>
     </div>
   </div>
 </section>

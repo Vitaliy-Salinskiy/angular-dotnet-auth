@@ -1,10 +1,14 @@
 @if(auth.isLoading$ | async){
-<p>loading...</p>
+<div class="relative h-[45px] w-[45px] bg-gray-700 rounded-full"></div>
 }@else { @if(auth.isAuthenticated$ | async){ @if(auth.user$ | async; as user){
 <div class="relative text-blackish-green">
   <div class="relative h-[45px] w-[45px]">
     <img
-      ngSrc="https://i.pinimg.com/736x/de/4b/2b/de4b2b63e716ca9880975137388593fe.jpg"
+      [ngSrc]="
+        user.picture
+          ? user.picture
+          : 'https://i.pinimg.com/736x/de/4b/2b/de4b2b63e716ca9880975137388593fe.jpg'
+      "
       class="bg-black rounded-full cursor-pointer object-cover"
       (click)="handleOpenChange()"
       alt="profile"
@@ -18,14 +22,18 @@
     <div class="flex items-center gap-4">
       <div class="w-[64px] h-[64px] bg-black rounded-full relative">
         <img
-          ngSrc="https://i.pinimg.com/736x/de/4b/2b/de4b2b63e716ca9880975137388593fe.jpg"
+          [ngSrc]="
+            user.picture
+              ? user.picture
+              : 'https://i.pinimg.com/736x/de/4b/2b/de4b2b63e716ca9880975137388593fe.jpg'
+          "
           class="bg-black rounded-full cursor-pointer object-cover"
           alt="profile-pic"
           fill
         />
       </div>
       <div class="flex flex-col gap-px">
-        <p class="text-xl font-semibold">Jhon Doe</p>
+        <p class="text-xl font-semibold">{{ user.name }}</p>
         <p class="text-base text-gray-600">Online</p>
       </div>
     </div>
@@ -58,8 +66,6 @@
     </div>
   </div>
 </div>
-}
-<button>Log out</button>
-} @else {
+} } @else {
 <button (click)="auth.loginWithRedirect()">Log in</button>
 } }
