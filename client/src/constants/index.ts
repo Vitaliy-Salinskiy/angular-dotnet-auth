@@ -103,3 +103,13 @@ export const monthNames = [
 ];
 
 export const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+export const roomsAndGuestsData = [
+  { value: '1', label: '1 Room, 1 Guest' },
+  { value: '2', label: '1 Rooms, 2 Guests' },
+  { value: '3', label: '2 Rooms, 2 Guests' },
+  { value: '4', label: '2 Rooms, 3 Guests' },
+  { value: '5', label: '3 Rooms, 4 Guests' },
+  { value: '6', label: '4 Rooms, 5 Guests' },
+  { value: '7', label: '5 Rooms, 5 Guests' },
+];

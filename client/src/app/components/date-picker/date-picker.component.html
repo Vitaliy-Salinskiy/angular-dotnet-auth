@@ -1,11 +1,13 @@
 <div class="relative" (click)="$event.stopPropagation()">
   <div class="relative border border-light-grey w-56 h-14 rounded-[4px] z-10">
-    <div
+    <label
+      for="id"
       class="absolute left-3 -top-[7.5px] bg-white text-blackish-green px-1 text-base font-normal leading-[17px] z-10"
     >
       {{ label }}
-    </div>
+    </label>
     <input
+      [id]="id"
       readonly
       type="date"
       [value]="selectedDate?.toISOString()?.slice(0, 10)"

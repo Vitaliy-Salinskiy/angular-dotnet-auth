@@ -11,18 +11,44 @@
       </div>
     </div>
     <div class="app-container">
-      <div
-        class="w-full shadow-xl drop-shadow-2xl h-64 -translate-y-1/2 z-10 bg-white ring-0 rounded-xl py-8 px-6 flex justify-between"
+      <form
+        class="w-full shadow-xl drop-shadow-2xl h-64 -translate-y-1/2 z-10 bg-white ring-0 rounded-xl py-8 px-6 flex flex-col gap-6"
       >
-        <date-picker
-          label="Check in"
-          (selectedDateChange)="onSelectedDateChange($event, 'checkIn')"
-        ></date-picker>
-        <date-picker
-          label="Check out"
-          (selectedDateChange)="onSelectedDateChange($event, 'checkOut')"
-        ></date-picker>
-      </div>
+        <h2 class="text-xl font-semibold text-blackish-green">
+          Where are you flying?
+        </h2>
+
+        <div class="flex gap-4">
+          <app-input
+            class="flex-1"
+            label="Destination"
+            placeholder="City, Country"
+            icon="ionBed"
+          ></app-input>
+          <date-picker
+            label="Check in"
+            (selectedDateChange)="onSelectedDateChange($event, 'checkIn')"
+          ></date-picker>
+          <date-picker
+            label="Check out"
+            (selectedDateChange)="onSelectedDateChange($event, 'checkOut')"
+          ></date-picker>
+          <app-select
+            label="Rooms & Guests"
+            icon="ionPerson"
+            [data]="roomAndGuestsData"
+          ></app-select>
+        </div>
+        <div class="flex gap-6 justify-end">
+          <p class="flex items-center gap-1 cursor-pointer">
+            <span class="text-2xl">+</span> Add Promo Code
+          </p>
+          <app-button
+            text="Show Places"
+            icon="heroBuildingOffice2Solid"
+          ></app-button>
+        </div>
+      </form>
     </div>
   </div>
 </section>

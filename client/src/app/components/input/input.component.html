@@ -1,0 +1,22 @@
+<div [class]="'relative h-14 w-56' + class">
+  <input
+    [id]="id"
+    [type]="type"
+    [placeholder]="placeholder"
+    class="absolute inset-0 pl-4 pr-10 rounded-[4px] outline-none font-normal text-blackish-green border border-light-grey placeholder:text-blackish-green/85"
+  />
+  @if (label) {
+  <label
+    [for]="id"
+    class="absolute left-3 -top-[7.5px] bg-white text-blackish-green px-1 text-base font-normal leading-[17px] z-10"
+  >
+    {{ label }}
+  </label>
+  } @if(icon){
+
+  <ng-icon
+    [name]="icon"
+    class="absolute right-3 top-1/2 -translate-y-1/2 text-2xl"
+  ></ng-icon>
+  }
+</div>

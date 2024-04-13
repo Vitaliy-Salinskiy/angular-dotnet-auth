@@ -39,8 +39,10 @@ export class DatePickerComponent implements OnInit {
 
   daysOfMonth: { dateLabel: number; isActive: boolean; date: Date }[] = [];
 
+  id = 'date-picker-' + Math.random().toString(36).substring(2, 11);
+
   @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent) {
+  onDocumentClick(_event: MouseEvent) {
     this.resetValues();
   }
 
@@ -55,11 +57,13 @@ export class DatePickerComponent implements OnInit {
     this.isOpen = false;
     this.isNestedOpen = false;
     setTimeout(() => {
-      this.currentDate = new Date();
-      this.currentMonth = this.currentDate.getMonth();
-      this.currentYear = this.currentDate.getFullYear();
-      this.nestedYear = this.currentYear;
-      this.getMonthDays(this.currentYear, this.currentMonth);
+      if (!this.selectedDate) {
+        this.currentDate = new Date();
+        this.currentMonth = this.currentDate.getMonth();
+        this.currentYear = this.currentDate.getFullYear();
+        this.nestedYear = this.currentYear;
+        this.getMonthDays(this.currentYear, this.currentMonth);
+      }
     }, 75);
   }
 

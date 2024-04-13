@@ -1,0 +1,15 @@
+<button
+  [type]="type"
+  [disabled]="disabled"
+  [class.gap-2]="icon"
+  [class]="
+    'flex justify-center items-center gap-1.5 py-[15.5px] blackish-green px-4 bg-mint-green font-medium text-sm rounded-[4px] ' +
+    class
+  "
+  (click)="clickFn?.()"
+>
+  @if (icon) {
+  <ng-icon [name]="icon" class="text-2xl"></ng-icon>
+  }
+  <p>{{ text }}</p>
+</button>

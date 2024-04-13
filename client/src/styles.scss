@@ -18,6 +18,40 @@ body{
   background-repeat: no-repeat;
 }
 
+body::-webkit-scrollbar{
+  width: 10px;
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-track{
+  background: #444;
+}
+
+body::-webkit-scrollbar-thumb{
+  background: #8DD3BB;
+}
+
+body::-webkit-scrollbar-thumb:hover{
+  background: #73b69d;
+}
+
+.custom-select::-webkit-scrollbar{
+  width: 3px;
+  border-radius: 4px;
+}
+
+.custom-select::-webkit-scrollbar-track{
+  background: #000;
+}
+
+.custom-select::-webkit-scrollbar-thumb{
+  background: #8DD3BB;
+}
+
+.custom-select::-webkit-scrollbar-thumb:hover{
+  background: rgb(80, 136, 7)3BB;
+}
+
 @layer{
     .app-container{
         @apply w-full mx-auto px-4 md:px-2 2xl:px-1 container max-w-screen-xl

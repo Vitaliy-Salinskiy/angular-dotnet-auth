@@ -1,0 +1,53 @@
+<div class="relative h-14 w-56" (click)="$event.stopPropagation()">
+  <div (click)="toggleDropdown()" class="cursor-pointer">
+    @if(icon){
+    <ng-icon
+      [name]="icon"
+      class="absolute left-3 top-1/2 -translate-y-1/2 text-2xl z-10"
+    ></ng-icon>
+    }
+    <input
+      [id]="id"
+      readonly
+      [value]="selectedItem.label"
+      type="text"
+      class="absolute inset-0 pl-11 pr-2 rounded-[4px] outline-none font-normal text-blackish-green border border-light-grey placeholder:text-blackish-green/85 cursor-pointer"
+    />
+    <ng-icon
+      name="ionChevronDown"
+      class="absolute right-2 top-1/2 -translate-y-1/2 z-10 transition-transform"
+      [ngClass]="{ 'transform -rotate-180': isOpen }"
+    ></ng-icon>
+    <label
+      [for]="id"
+      class="absolute left-3 -top-[7.5px] bg-white text-blackish-green px-1 text-base font-normal leading-[17px] z-10"
+    >
+      {{ label }}
+    </label>
+  </div>
+
+  <div
+    class="absolute border border-black left-0 right-0 top-[103%] rounded-[4px] overflow-hidden transition-[opacity_0.3s,visibility_0.35s,transform_0.3s] bg-white"
+    [ngClass]="{ 'opacity-0 invisible scale-95': !isOpen }"
+  >
+    <div class="custom-select overflow-y-scroll max-h-36">
+      @for (item of data; track $index) {
+      <div
+        class="h-[28.8px] flex gap-1 items-center cursor-pointer pl-2 pr-1 text-black"
+        [ngClass]="{
+          'bg-black hover:bg-gray-700 text-white': selectedItem === item,
+          'hover:bg-gray-200': selectedItem !== item
+        }"
+        (click)="onValueChange($index)"
+      >
+        <div class="w-4 h-4">
+          @if(selectedItem === item){
+          <ng-icon name="ionCheckmark" class="text-sm text-white"></ng-icon>
+          }
+        </div>
+        <div>{{ item.label }}</div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

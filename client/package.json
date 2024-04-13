@@ -23,6 +23,7 @@
     "@angular/ssr": "^17.3.0",
     "@auth0/auth0-angular": "^2.2.3",
     "@ng-icons/core": "^27.2.0",
+    "@ng-icons/heroicons": "^27.3.0",
     "@ng-icons/ionicons": "^27.2.0",
     "angular-calendar": "^0.31.0",
     "date-fns": "^3.6.0",
