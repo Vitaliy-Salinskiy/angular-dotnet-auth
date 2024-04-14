@@ -22,6 +22,7 @@ export class SelectComponent implements OnInit {
   @Input() label: string = '';
   @Input() icon: string = '';
   @Input() data: any[] = [];
+  @Input() customClass?: string = '';
 
   @Output() selectedValueChange = new EventEmitter<object>();
 

@@ -1,0 +1,74 @@
+<footer class="bg-mint-green mt-[264px]">
+  <div class="app-container">
+    <div class="pb-16 pt-[220px] relative">
+      <div
+        class="w-full shadow-xl drop-shadow-2xl z-10 bg-light-green ring-0 rounded-xl gap-12 px-6 flex absolute -top-[165px]"
+      >
+        <div class="flex flex-col flex-2 text-blackish-green my-8">
+          <h2
+            class="max-w-[364px] text-[24px] leading-9 sm:text-[30px] sm:leading-[44px] md:text-[44px] md:leading-[54px] font-bold"
+          >
+            Subscribe Newsletter
+          </h2>
+          <h3
+            class="opacity-80 mt-3 md:mt-6 font-bold text-sm md:leading-[25px] md:text-[20px]"
+          >
+            The Travel
+          </h3>
+          <p class="opacity-70 mt-1 md:mt-2 text-sm md:text-base font-medium">
+            Get inspired! Receive travel discounts, tips and behind the scenes
+            stories.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-2 sm:mt-4">
+            <input
+              type="text"
+              class="text-base text-blackish-green px-4 h-14 rounded-[4px] placeholder:text-black placeholder:text-opacity-80 outline-none w-full sm:w-5/6"
+              placeholder="Your email address"
+            />
+            <app-button
+              text="Subscribe"
+              class="h-14"
+              customClass="h-full w-full sm:w-auto"
+            ></app-button>
+          </div>
+        </div>
+        <div class="hidden md:block relative max-w-[400px] w-full ml-auto">
+          <img ngSrc="/assets/mailbox.png" fill alt="mailbox" />
+        </div>
+      </div>
+      <div
+        class="flex flex-col sm:flex-row items-start gap-4 sm:justify-between"
+      >
+        <div class="flex flex-col gap-6">
+          <img
+            ngSrc="/assets/footer-logo.svg"
+            alt="footer logo"
+            width="120"
+            height="39"
+          />
+          <div class="flex gap-[13px] text-blackish-green">
+            @for (social of socialLinks; track $index) {
+            <a [href]="social.path">
+              <ng-icon [name]="social.iconName" class="text-[20px]"></ng-icon>
+            </a>
+            }
+          </div>
+        </div>
+        <div
+          class="flex flex-wrap gap-x-6 justify-start sm:justify-end gap-y-10 mt-5 sm:mt-0"
+        >
+          @for (data of footerData; track $index) {
+          <div class="text-blackish-green w-[175px]">
+            <h3 class="text-[16px] leading-5 font-bold">{{ data.title }}</h3>
+            <div class="flex flex-col gap-3 mt-4">
+              @for (subtitle of data.items; track $index) {
+              <p class="opacity-70 font-medium">{{ subtitle }}</p>
+              }
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -2,48 +2,65 @@
   <div class="flex flex-col">
     <div class="hero-bg">
       <div class="app-container h-[537px] pt-20">
-        <div class="max-w-[420px] text-white flex flex-col gap-2">
-          <h1 class="text-[45px] leading-[57px] font-bold">
+        <div
+          class="max-w-[340px] md:max-w-[420px] text-white flex flex-col gap-2"
+        >
+          <h1
+            class="text-[32px] md:text-[45px] leading-10 md:leading-[57px] font-bold"
+          >
             Make your travel whishlist, we’ll do the rest
           </h1>
-          <p class="text-[20px] leading-6">Special offers to suit your plan</p>
+          <p class="text-base md:text-[20px] md:leading-6">
+            Special offers to suit your plan
+          </p>
         </div>
       </div>
     </div>
     <div class="app-container">
       <form
-        class="w-full shadow-xl drop-shadow-2xl h-64 -translate-y-1/2 z-10 bg-white ring-0 rounded-xl py-8 px-6 flex flex-col gap-6"
+        class="w-full shadow-xl drop-shadow-2xl -translate-y-1/2 z-10 bg-white ring-0 rounded-xl py-8 px-6 flex flex-col gap-6"
       >
         <h2 class="text-xl font-semibold text-blackish-green">
           Where are you flying?
         </h2>
 
-        <div class="flex gap-4">
+        <div class="flex flex-wrap gap-4">
           <app-input
-            class="flex-1"
+            class="w-full sm:w-[calc(100%/2-8px)] lg:flex-1"
+            customClass="w-full"
             label="Destination"
             placeholder="City, Country"
             icon="ionBed"
           ></app-input>
           <date-picker
+            class="w-full sm:w-[calc(100%/2-8px)] lg:w-auto"
+            customClass="w-full lg:w-56"
             label="Check in"
             (selectedDateChange)="onSelectedDateChange($event, 'checkIn')"
           ></date-picker>
           <date-picker
+            class="w-full sm:w-[calc(100%/2-8px)] lg:w-auto"
+            customClass="w-full lg:w-56"
             label="Check out"
             (selectedDateChange)="onSelectedDateChange($event, 'checkOut')"
           ></date-picker>
           <app-select
+            class="w-full sm:w-[calc(100%/2-8px)] lg:w-auto"
+            customClass="w-full lg:w-56"
             label="Rooms & Guests"
             icon="ionPerson"
             [data]="roomAndGuestsData"
           ></app-select>
         </div>
-        <div class="flex gap-6 justify-end">
-          <p class="flex items-center gap-1 cursor-pointer">
-            <span class="text-2xl">+</span> Add Promo Code
+        <div
+          class="flex flex-col-reverse md:flex-row gap-6 items-end md:items-stretch md:justify-end"
+        >
+          <p class="flex items-center gap-1 cursor-pointer text-sm">
+            <span class="text-xl md:text-2xl">+</span> Add Promo Code
           </p>
           <app-button
+            class="w-full md:w-auto"
+            customClass="w-full"
             text="Show Places"
             icon="heroBuildingOffice2Solid"
           ></app-button>

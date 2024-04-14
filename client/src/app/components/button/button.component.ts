@@ -10,7 +10,7 @@ import { heroBuildingOffice2Solid } from '@ng-icons/heroicons/solid';
   viewProviders: [provideIcons({ heroBuildingOffice2Solid })],
 })
 export class ButtonComponent {
-  @Input() class?: string = '';
+  @Input() customClass?: string = '';
   @Input() text: string = '';
   @Input() icon?: string = '';
   @Input() type? = 'button';

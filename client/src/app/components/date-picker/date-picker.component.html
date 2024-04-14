@@ -1,5 +1,9 @@
 <div class="relative" (click)="$event.stopPropagation()">
-  <div class="relative border border-light-grey w-56 h-14 rounded-[4px] z-10">
+  <div
+    [class]="
+      'relative border border-light-grey w-56 h-14 rounded-[4px] ' + customClass
+    "
+  >
     <label
       for="id"
       class="absolute left-3 -top-[7.5px] bg-white text-blackish-green px-1 text-base font-normal leading-[17px] z-10"
@@ -21,7 +25,7 @@
   </div>
 
   <div
-    class="absolute top-16 rounded-lg w-[280px] border bg-white border-black flex flex-col p-5 transition-[transform_0.3s,visibility_0.35s,opacity_0.3s] z-0"
+    class="absolute top-16 rounded-lg w-[280px] border bg-white border-black flex flex-col p-5 transition-[transform_0.3s,visibility_0.35s,opacity_0.3s] z-20"
     [ngClass]="{
       'scale-95 invisible opacity-0': !isOpen
     }"

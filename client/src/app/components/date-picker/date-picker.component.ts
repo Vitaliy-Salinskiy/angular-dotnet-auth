@@ -21,6 +21,7 @@ import { monthNames, weekDays } from '../../../constants';
 })
 export class DatePickerComponent implements OnInit {
   @Input() label: string = '';
+  @Input() customClass?: string = '';
 
   @Output() selectedDateChange = new EventEmitter<Date | null>();
 

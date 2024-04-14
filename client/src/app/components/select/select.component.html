@@ -1,4 +1,7 @@
-<div class="relative h-14 w-56" (click)="$event.stopPropagation()">
+<div
+  [class]="'relative h-14 w-56' + customClass"
+  (click)="$event.stopPropagation()"
+>
   <div (click)="toggleDropdown()" class="cursor-pointer">
     @if(icon){
     <ng-icon
@@ -27,7 +30,7 @@
   </div>
 
   <div
-    class="absolute border border-black left-0 right-0 top-[103%] rounded-[4px] overflow-hidden transition-[opacity_0.3s,visibility_0.35s,transform_0.3s] bg-white"
+    class="absolute border border-black left-0 right-0 top-[103%] rounded-[4px] overflow-hidden transition-[opacity_0.3s,visibility_0.35s,transform_0.3s] bg-white z-30"
     [ngClass]="{ 'opacity-0 invisible scale-95': !isOpen }"
   >
     <div class="custom-select overflow-y-scroll max-h-36">

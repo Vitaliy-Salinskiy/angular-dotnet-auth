@@ -17,7 +17,7 @@ export class InputComponent {
   @Input() value: string = '';
   @Input() disabled: boolean = false;
   @Input() icon: string = '';
-  @Input() class?: string = '';
+  @Input() customClass?: string = '';
 
   id = 'custom-input-' + Math.random().toString(36).substring(2, 11);
 }

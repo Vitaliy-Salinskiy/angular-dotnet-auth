@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 import { HeroComponent } from '../../components/hero/hero.component';
-import { DatePickerComponent } from '../../components/date-picker/date-picker.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
-  selector: 'app-hotel-page',
+  selector: 'hotel-page',
   standalone: true,
-  imports: [HeroComponent, DatePickerComponent],
+  imports: [HeroComponent, FooterComponent],
   templateUrl: './hotel-page.component.html',
 })
 export class HotelPageComponent {}
