@@ -1,3 +1,5 @@
+import { ITravelCard } from '../interfaces';
+
 export const headerLinks = [
   {
     iconName: 'ionAirplane',
@@ -138,5 +140,36 @@ export const recentSearches = [
     image: 'assets/maldives.png',
     title: 'Malé, Maldives',
     places: 325,
+  },
+];
+
+export const travelData: ITravelCard[] = [
+  {
+    id: 1,
+    title: 'Melbourne',
+    description: 'An amazing journey',
+    price: 700,
+    image: 'assets/travel-1.png',
+  },
+  {
+    id: 2,
+    title: 'London',
+    description: 'London eye adventure',
+    price: 350,
+    image: 'assets/travel-2.png',
+  },
+  {
+    id: 3,
+    title: 'Melbourne',
+    description: 'An amazing journey',
+    price: 700,
+    image: 'assets/travel-1.png',
+  },
+  {
+    id: 4,
+    title: 'London',
+    description: 'London eye adventure',
+    price: 350,
+    image: 'assets/travel-2.png',
   },
 ];

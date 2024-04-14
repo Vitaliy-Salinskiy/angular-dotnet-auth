@@ -20,15 +20,16 @@
             stories.
           </p>
           <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-2 sm:mt-4">
-            <input
+            <app-input
               type="text"
-              class="text-base text-blackish-green px-4 h-14 rounded-[4px] placeholder:text-black placeholder:text-opacity-80 outline-none w-full sm:w-5/6"
+              class="!w-full sm:w-5/6"
+              customClass="border-none"
               placeholder="Your email address"
             />
             <app-button
               text="Subscribe"
               class="h-14"
-              customClass="h-full w-full sm:w-auto"
+              customClass="h-full w-full sm:w-auto text-white !bg-black"
             ></app-button>
           </div>
         </div>

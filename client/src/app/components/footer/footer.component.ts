@@ -11,11 +11,12 @@ import {
 
 import { ButtonComponent } from '../button/button.component';
 import { footerData, socialLinks } from '../../../constants';
+import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [NgOptimizedImage, ButtonComponent, NgIconComponent],
+  imports: [NgOptimizedImage, ButtonComponent, NgIconComponent, InputComponent],
   templateUrl: './footer.component.html',
   viewProviders: [
     provideIcons({

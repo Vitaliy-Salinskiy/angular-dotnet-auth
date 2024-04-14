@@ -2,7 +2,10 @@
 <div class="relative h-[45px] w-[45px] bg-gray-700 rounded-full"></div>
 }@else { @if(auth.isAuthenticated$ | async){ @if(auth.user$ | async; as user){
 <div class="relative text-blackish-green">
-  <div class="relative h-[45px] w-[45px]">
+  <div
+    class="relative h-[45px] w-[45px] rounded-full"
+    (click)="handleOpenChange()"
+  >
     <img
       [ngSrc]="
         user.picture
@@ -10,14 +13,13 @@
           : 'https://i.pinimg.com/736x/de/4b/2b/de4b2b63e716ca9880975137388593fe.jpg'
       "
       class="bg-black rounded-full cursor-pointer object-cover"
-      (click)="handleOpenChange()"
       alt="profile"
       fill
     />
   </div>
   <div
-    [ngClass]="{ 'top-[20px]': !isOpen, 'opacity-0': !isOpen }"
-    class="-z-20 transition-all absolute w-96 bg-white -right-4 top-[130%] shadow-2xl drop-shadow-xl shadow-black rounded-xl py-8 flex gap-6 flex-col px-8"
+    [ngClass]="{ 'top-[20px]': !isOpen, 'opacity-0 invisible': !isOpen }"
+    class="-z-20 transition-[opacity_0.3s,visibility_0.35s,transform_0.3s] absolute w-96 bg-white -right-4 top-[130%] shadow-2xl drop-shadow-xl shadow-black rounded-xl py-8 flex gap-6 flex-col px-8"
   >
     <div class="flex items-center gap-4">
       <div class="w-[64px] h-[64px] bg-black rounded-full relative">

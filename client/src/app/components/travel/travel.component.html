@@ -1,0 +1,32 @@
+<section>
+  <div class="app-container">
+    <div class="flex flex-col gap-8 py-20">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6"
+      >
+        <div class="flex flex-col gap-4">
+          <h2 class="heading-primary">Fall into travel</h2>
+          <p class="max-w-[851px]">
+            Going somewhere to celebrate this season? Whether you’re going home
+            or somewhere to roam, we’ve got the travel tools to get you to your
+            destination.
+          </p>
+        </div>
+        <a routerLink="/">
+          <app-button
+            class="min-w-20"
+            text="See All"
+            customClass="text-black bg-transparent border border-mint-green w-full text-nowrap py-[11.5px] px-4 hover:bg-mint-green hover:text-white"
+          ></app-button>
+        </a>
+      </div>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+      >
+        @for (journey of travelData; track $index) {
+        <travel-card [travelCard]="journey"></travel-card>
+        }
+      </div>
+    </div>
+  </div>
+</section>
