@@ -1,0 +1,31 @@
+<section>
+  <div class="app-container">
+    <div class="flex flex-col gap-8 text-blackish-green">
+      <h2 class="text-[32px] leading-9 font-bold">Your recent searches</h2>
+      <div class="flex gap-5 lg:gap-8 flex-wrap justify-between">
+        @for (search of recentSearches; track $index) {
+        <a
+          class="w-full sm:w-[calc(100%/2-10px)] md:w-auto flex gap-4"
+          [routerLink]="'/journey/' + search.id"
+        >
+          <div>
+            <img
+              width="90"
+              height="90"
+              [ngSrc]="search.image"
+              [alt]="search.title + search.image + $index"
+              class="rounded-lg"
+            />
+          </div>
+          <div class="flex flex-col justify-center gap-2 text-blackish-green">
+            <h3 class="text-base font-semibold">{{ search.title }}</h3>
+            <p class="text-[12px] text-blackish-green/75">
+              {{ search.places }} places
+            </p>
+          </div>
+        </a>
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -113,3 +113,30 @@ export const roomsAndGuestsData = [
   { value: '6', label: '4 Rooms, 5 Guests' },
   { value: '7', label: '5 Rooms, 5 Guests' },
 ];
+
+export const recentSearches = [
+  {
+    id: 1,
+    image: 'assets/turkey.png',
+    title: 'Istanbul, Turkey',
+    places: 325,
+  },
+  {
+    id: 2,
+    image: 'assets/maldives.png',
+    title: 'Malé, Maldives',
+    places: 325,
+  },
+  {
+    id: 3,
+    image: 'assets/turkey.png',
+    title: 'Istanbul, Turkey',
+    places: 325,
+  },
+  {
+    id: 4,
+    image: 'assets/maldives.png',
+    title: 'Malé, Maldives',
+    places: 325,
+  },
+];
