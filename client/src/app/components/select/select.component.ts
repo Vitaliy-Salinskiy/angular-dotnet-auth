@@ -4,12 +4,16 @@ import {
   EventEmitter,
   HostListener,
   Input,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 
 import { ionChevronDown, ionCheckmark, ionPerson } from '@ng-icons/ionicons';
+
+import { UiService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-select',
@@ -18,13 +22,17 @@ import { ionChevronDown, ionCheckmark, ionPerson } from '@ng-icons/ionicons';
   templateUrl: './select.component.html',
   viewProviders: [provideIcons({ ionChevronDown, ionCheckmark, ionPerson })],
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent implements OnInit, OnDestroy {
   @Input() label: string = '';
   @Input() icon: string = '';
   @Input() data: any[] = [];
   @Input() customClass?: string = '';
 
   @Output() selectedValueChange = new EventEmitter<object>();
+
+  private uiSubscription: Subscription = new Subscription();
+
+  constructor(private uiService: UiService) {}
 
   id = Math.random().toString(36).substring(2, 11);
 
@@ -51,9 +59,26 @@ export class SelectComponent implements OnInit {
 
   toggleDropdown() {
     this.isOpen = !this.isOpen;
+    if (this.isOpen) {
+      this.uiService.openUIComponent(this.id);
+    } else {
+      this.uiService.closeUIComponent();
+    }
   }
 
   ngOnInit(): void {
     this.selectedItem = this.data[1];
+
+    this.uiSubscription = this.uiService.openUIComponentId$.subscribe(
+      (id: any) => {
+        if (id !== this.id) {
+          this.isOpen = false;
+        }
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.uiSubscription.unsubscribe();
   }
 }

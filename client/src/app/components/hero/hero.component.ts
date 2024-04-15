@@ -18,7 +18,6 @@ import { ButtonComponent } from '../button/button.component';
   selector: 'hero',
   standalone: true,
   imports: [
-    FormsModule,
     ReactiveFormsModule,
     DatePickerComponent,
     InputComponent,
@@ -34,7 +33,7 @@ export class HeroComponent {
 
   constructor(@Inject(PLATFORM_ID) private platformId: any) {}
 
-  bookingForm = new FormGroup({
+  bookingForm: FormGroup = new FormGroup({
     destination: new FormControl<string>(''),
     checkIn: new FormControl<Date | null>(null),
     checkOut: new FormControl<Date | null>(null),

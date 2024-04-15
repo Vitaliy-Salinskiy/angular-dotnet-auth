@@ -3,7 +3,10 @@
     [id]="id"
     [type]="type"
     [placeholder]="placeholder"
-    [class]="'absolute left-0 right-0 top-0 bottom-0 pl-4 pr-10 rounded-[4px] outline-none font-normal text-blackish-green border border-light-grey placeholder:text-blackish-green/85 ' + customClass"
+    [class]="
+      'absolute left-0 right-0 top-0 bottom-0 pl-4 pr-10 rounded-[4px] outline-none font-normal text-blackish-green border border-light-grey placeholder:text-blackish-green/85 ' +
+      customClass
+    "
   />
   @if (label) {
   <label

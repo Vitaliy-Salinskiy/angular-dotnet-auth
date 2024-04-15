@@ -6,9 +6,14 @@ import {
   Output,
   EventEmitter,
   Input,
+  inject,
+  OnDestroy,
 } from '@angular/core';
 import { provideIcons, NgIconComponent } from '@ng-icons/core';
+import { EMPTY, Subscription } from 'rxjs';
 import { ionCalendar, ionArrowBack, ionArrowForward } from '@ng-icons/ionicons';
+
+import { UiService } from '../../services/ui.service';
 
 import { monthNames, weekDays } from '../../../constants';
 
@@ -19,11 +24,13 @@ import { monthNames, weekDays } from '../../../constants';
   templateUrl: './date-picker.component.html',
   viewProviders: [provideIcons({ ionCalendar, ionArrowBack, ionArrowForward })],
 })
-export class DatePickerComponent implements OnInit {
+export class DatePickerComponent implements OnInit, OnDestroy {
   @Input() label: string = '';
   @Input() customClass?: string = '';
 
   @Output() selectedDateChange = new EventEmitter<Date | null>();
+
+  constructor(private uiComponentService: UiService) {}
 
   monthNames: string[] = monthNames;
   daysOfWeek: string[] = weekDays;
@@ -41,6 +48,8 @@ export class DatePickerComponent implements OnInit {
   daysOfMonth: { dateLabel: number; isActive: boolean; date: Date }[] = [];
 
   id = 'date-picker-' + Math.random().toString(36).substring(2, 11);
+
+  private uiSubscription: Subscription = new Subscription();
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(_event: MouseEvent) {
@@ -151,6 +160,11 @@ export class DatePickerComponent implements OnInit {
 
   handleCalendarOpen() {
     this.isOpen = !this.isOpen;
+    if (this.isOpen) {
+      this.uiComponentService.openUIComponent(this.id);
+    } else {
+      this.uiComponentService.closeUIComponent();
+    }
   }
 
   handleNestedCalendarOpen(e: Event | null, value?: boolean) {
@@ -162,6 +176,11 @@ export class DatePickerComponent implements OnInit {
     } else {
       this.isNestedOpen = !this.isNestedOpen;
     }
+    if (this.isNestedOpen) {
+      this.uiComponentService.openUIComponent(this.id);
+    } else {
+      this.uiComponentService.closeUIComponent();
+    }
     this.nestedYear = this.currentYear;
   }
 
@@ -170,5 +189,18 @@ export class DatePickerComponent implements OnInit {
       this.currentDate.getFullYear(),
       this.currentDate.getMonth()
     );
+
+    this.uiSubscription = this.uiComponentService.openUIComponentId$.subscribe(
+      (id: any) => {
+        if (id !== this.id) {
+          this.isOpen = false;
+          this.isNestedOpen = false;
+        }
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.uiSubscription.unsubscribe();
   }
 }
