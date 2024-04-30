@@ -10,33 +10,35 @@ using System.ComponentModel.DataAnnotations;
 
 namespace dotnet.Pages.Account
 {
-    public class Login : PageModel
-    {
-        private readonly ILogger<Login> _logger;
+	public class Login : PageModel
+	{
+		private readonly ILogger<Login> _logger;
 
-        public Login(ILogger<Login> logger)
-        {
-            _logger = logger;
-        }
+		public Login(ILogger<Login> logger)
+		{
+			_logger = logger;
+		}
 
-        [BindProperty]
-        public Credential Credential {get; set;} = new Credential();
+		[BindProperty]
+		public Credential Credential { get; set; } = new Credential();
 
-        public void OnGet()
-        {
-        }
+		public void OnGet()
+		{
+		}
 
-        public void onPost(){
-        }
-    }
+		public void onPost()
+		{
+		}
+	}
 
-    public class Credential {
-        [Required]
-        [Display(Name = "User Name")]
-        public string UserName {get; set;} = string.Empty;
-         
-        [Required]
-        [DataType(DataType.Password)]
-        public string Password {get; set;} = string.Empty;
-    }
+	public class Credential
+	{
+		[Required]
+		[Display(Name = "User Name")]
+		public string UserName { get; set; } = string.Empty;
+
+		[Required]
+		[DataType(DataType.Password)]
+		public string Password { get; set; } = string.Empty;
+	}
 }
