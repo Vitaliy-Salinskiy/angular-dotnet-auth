@@ -1,23 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 
 
 namespace dotnet.Pages.Account
 {
 	public class Login : PageModel
 	{
-		private readonly ILogger<Login> _logger;
-
-		public Login(ILogger<Login> logger)
-		{
-			_logger = logger;
-		}
 
 		[BindProperty]
 		public Credential Credential { get; set; } = new Credential();
@@ -26,8 +17,27 @@ namespace dotnet.Pages.Account
 		{
 		}
 
-		public void onPost()
+		public async Task<IActionResult> OnPostAsync()
 		{
+			if (!ModelState.IsValid) return Page();
+
+			if (Credential.UserName == "admin" && Credential.Password == "password")
+			{
+				var claims = new List<Claim> {
+					new Claim(ClaimTypes.Name, "admin"),
+					new Claim(ClaimTypes.Email, "admin@localhost")
+				};
+
+				var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+				ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+
+				await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+
+				return RedirectToPage("/Index");
+			};
+
+			return Page();
+
 		}
 	}
 
