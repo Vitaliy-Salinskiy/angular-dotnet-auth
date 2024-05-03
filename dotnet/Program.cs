@@ -1,3 +1,6 @@
+using dotnet.Authorization;
+using Microsoft.AspNetCore.Authorization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
@@ -10,8 +13,13 @@ builder.Services.AddAuthorization(options =>
 {
 	options.AddPolicy("AdminOnly", policy => policy.RequireClaim("Admin"));
 	options.AddPolicy("MustBelongToHRDepartment", policy => policy.RequireClaim("Department", "HR"));
-	options.AddPolicy("HRManagerOnly", policy => policy.RequireClaim("Department", "HR").RequireClaim("Manager"));
+	options.AddPolicy("HRManagerOnly", policy => policy
+	.RequireClaim("Department", "HR")
+	.RequireClaim("Manager")
+	.Requirements.Add(new HRManageProbationRequirement(3)));
 });
+
+builder.Services.AddSingleton<IAuthorizationHandler, HRManageProbationRequirementHandler>();
 
 var app = builder.Build();
 
