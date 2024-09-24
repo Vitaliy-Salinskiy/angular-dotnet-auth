@@ -37,7 +37,9 @@ export class HeroComponent {
     destination: new FormControl<string>(''),
     checkIn: new FormControl<Date | null>(null),
     checkOut: new FormControl<Date | null>(null),
-    roomsAndGuests: new FormControl<any>(roomsAndGuestsData[0]),
+    roomsAndGuests: new FormControl<(typeof roomsAndGuestsData)[0]>(
+      roomsAndGuestsData[0]
+    ),
   });
 
   onSelectedDateChange(
@@ -45,13 +47,13 @@ export class HeroComponent {
     destination: 'checkIn' | 'checkOut'
   ) {
     if (destination === 'checkIn') {
-      this.bookingForm.patchValue({ checkIn: newDate });
+      -this.bookingForm.patchValue({ checkIn: newDate });
     } else {
       this.bookingForm.patchValue({ checkOut: newDate });
     }
   }
 
-  onSelectDataChange(selectedData: any) {
+  onSelectDataChange(selectedData: (typeof roomsAndGuestsData)[0]) {
     this.bookingForm.patchValue({ roomsAndGuests: selectedData });
   }
 

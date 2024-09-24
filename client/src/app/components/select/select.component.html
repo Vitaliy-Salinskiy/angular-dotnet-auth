@@ -2,7 +2,11 @@
   [class]="'relative h-14 w-56' + customClass"
   (click)="$event.stopPropagation()"
 >
-  <div (click)="toggleDropdown()" class="cursor-pointer">
+  <div
+    (click)="toggleDropdown()"
+    class="cursor-pointer"
+    [formGroup]="formGroup"
+  >
     @if(icon){
     <ng-icon
       [name]="icon"
@@ -10,9 +14,10 @@
     ></ng-icon>
     }
     <input
+      [formControlName]="controlName"
       [id]="id"
+      [value]="selectedItem?.label"
       readonly
-      [value]="selectedItem.label"
       type="text"
       class="absolute inset-0 pl-11 pr-2 rounded-[4px] outline-none font-normal text-blackish-green border border-light-grey placeholder:text-blackish-green/85 cursor-pointer"
     />

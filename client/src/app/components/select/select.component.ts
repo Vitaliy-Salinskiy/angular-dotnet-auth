@@ -14,19 +14,25 @@ import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { ionChevronDown, ionCheckmark, ionPerson } from '@ng-icons/ionicons';
 
 import { UiService } from '../../services/ui.service';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { IBasicSelect } from '../../../interfaces';
 
 @Component({
   selector: 'app-select',
   standalone: true,
-  imports: [NgIconComponent, NgClass],
+  imports: [NgIconComponent, NgClass, ReactiveFormsModule],
   templateUrl: './select.component.html',
   viewProviders: [provideIcons({ ionChevronDown, ionCheckmark, ionPerson })],
 })
-export class SelectComponent implements OnInit, OnDestroy {
+export class SelectComponent<T extends IBasicSelect<string>>
+  implements OnInit, OnDestroy
+{
   @Input() label: string = '';
   @Input() icon: string = '';
-  @Input() data: any[] = [];
+  @Input() data: T[] = [];
   @Input() customClass?: string = '';
+  @Input() formGroup!: FormGroup;
+  @Input() controlName: string = '';
 
   @Output() selectedValueChange = new EventEmitter<object>();
 
@@ -37,7 +43,7 @@ export class SelectComponent implements OnInit, OnDestroy {
   id = Math.random().toString(36).substring(2, 11);
 
   isOpen = false;
-  selectedItem: any;
+  selectedItem: T | null = null;
 
   @HostListener('document:click', ['$event'])
   onClick(_event: MouseEvent) {
@@ -67,8 +73,6 @@ export class SelectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.selectedItem = this.data[1];
-
     this.uiSubscription = this.uiService.openUIComponentId$.subscribe(
       (id: any) => {
         if (id !== this.id) {

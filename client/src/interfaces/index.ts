@@ -5,3 +5,8 @@ export interface ITravelCard {
   price: number;
   image: string;
 }
+
+export interface IBasicSelect<T> {
+  value: T;
+  label: string;
+}

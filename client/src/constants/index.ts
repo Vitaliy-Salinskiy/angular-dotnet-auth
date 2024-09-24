@@ -1,4 +1,4 @@
-import { ITravelCard } from '../interfaces';
+import { IBasicSelect, ITravelCard } from '../interfaces';
 
 export const headerLinks = [
   {
@@ -106,7 +106,7 @@ export const monthNames = [
 
 export const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-export const roomsAndGuestsData = [
+export const roomsAndGuestsData: IBasicSelect<string>[] = [
   { value: '1', label: '1 Room, 1 Guest' },
   { value: '2', label: '1 Rooms, 2 Guests' },
   { value: '3', label: '2 Rooms, 2 Guests' },
